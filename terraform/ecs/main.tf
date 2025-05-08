@@ -50,3 +50,16 @@ resource "aws_lb_listener" "frontend_listener" {
     target_group_arn = aws_lb_target_group.frontend_tg.arn
   }
 }
+
+resource "aws_ecr_repository" "my_repository" {
+  name                 = "coding-challenge1-repo"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  encryption_configuration {
+    encryption_type = "AES256"
+  }
+}
